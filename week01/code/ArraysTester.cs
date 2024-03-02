@@ -10,7 +10,9 @@ public static class ArraysTester {
         multiples = MultiplesOf(1.5, 10);
         Console.WriteLine($"<double>{{{string.Join(',', multiples)}}}"); // <double>{1.5, 3.0, 4.5, 6.0, 7.5, 9.0, 10.5, 12.0, 13.5, 15.0}
         multiples = MultiplesOf(-2, 10);
-        Console.WriteLine($"<double>{{{string.Join(',', multiples)}}}"); // <double>{-2, -4, -6, -8, -10, -12, -14, -16, -18, -20}
+        Console.WriteLine($"<double>{{{string.Join(',', multiples)}}}"); // <double>{-2, -4, -6, -8, -10, -12, -14, -16, -18, -20);}
+        multiples = MultiplesOf(50, 3);
+        Console.WriteLine($"<double>{{{string.Join(',', multiples)}}}"); // <double>{50, 100, 150);}
 
         Console.WriteLine("\n=========== PROBLEM 2 TESTS ===========");
         List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -39,7 +41,18 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return new double[0]; // replace this return statement with your own
+        //create a list of doubles with the length of the input
+        List<double> numbers = new List<double>();
+        //loop through the length of the list
+        for (int i = 0; i < length; i++)
+        {
+            //calculate the multiple
+            double multiple = number * (i + 1);
+            //add it to the list
+            numbers.Add(multiple);
+        }
+        // Convert the List<double> to an array before returning
+        return numbers.ToArray();
     }
     
     /// <summary>
@@ -56,6 +69,24 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // Calculate the effective rotation amount
+    int effectiveAmount = data.Count - amount % data.Count;
+
+    // Create a temporary list to store the rotated elements
+    List<int> rotatedElements = new List<int>(data.Count);
+
+    // Move the elements to the temporary list in rotated order
+    for (int i = 0; i < data.Count; i++)
+    {
+        rotatedElements.Add(data[(i + effectiveAmount) % data.Count]);
+    }
+
+    // Put the rotated elements back to the original list
+    for (int i = 0; i < data.Count; i++)
+    {
+        data[i] = rotatedElements[i];
+    }
 
     }
 }

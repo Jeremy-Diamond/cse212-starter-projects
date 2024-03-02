@@ -8,5 +8,5 @@
  * GitHub repository, unshared Google Drive folder) is acceptable.
  */
 
-Console.WriteLine("\n======================\nProve 1 - Arrays / Lists\n======================");
+Console.WriteLine("\n======================\nProve 1 - Arrays / Lists TEST\n======================");
 ArraysTester.Run();
