@@ -41,17 +41,18 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        //create a list of doubles with the length of the input
+        //create a list of doubles with the length of the input length 
         List<double> numbers = new List<double>();
-        //loop through the length of the list
+
+        //loop through the length of the list 
         for (int i = 0; i < length; i++)
         {
-            //calculate the multiple
+            //calculate the multiple of the number 
             double multiple = number * (i + 1);
-            //add it to the list
+            //add it to the list 
             numbers.Add(multiple);
         }
-        // Convert the List<double> to an array before returning
+        // Convert the List<double> to an array before returning it 
         return numbers.ToArray();
     }
     
@@ -70,19 +71,19 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        // Calculate the effective rotation amount
+        // Calculate the effective rotation amount using modulo
     int effectiveAmount = data.Count - amount % data.Count;
 
-    // Create a temporary list to store the rotated elements
+    // Create a temporary list to store the rotated elements in order to avoid overwriting the original list
     List<int> rotatedElements = new List<int>(data.Count);
 
-    // Move the elements to the temporary list in rotated order
+    // Move the elements to the temporary list in rotated order using modulo to wrap around the list if necessary 
     for (int i = 0; i < data.Count; i++)
     {
         rotatedElements.Add(data[(i + effectiveAmount) % data.Count]);
     }
 
-    // Put the rotated elements back to the original list
+    // Put the rotated elements back to the original list in the correct order 
     for (int i = 0; i < data.Count; i++)
     {
         data[i] = rotatedElements[i];
