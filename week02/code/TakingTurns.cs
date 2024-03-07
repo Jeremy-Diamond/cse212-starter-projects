@@ -7,23 +7,28 @@
         // Scenario: Create a queue with the following people and turns: Bob (2), Tim (5), Sue (3) and
         // run until the queue is empty
         // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
-        Console.WriteLine("Test 1");
+        Console.WriteLine("---- Test 1 ----");
         var players = new TakingTurnsQueue();
         players.AddPerson("Bob", 2);
         players.AddPerson("Tim", 5);
         players.AddPerson("Sue", 3);
         // Console.WriteLine(players);    // This can be un-commented out for debug help
+        //Console.WriteLine(players.Length);
         while (players.Length > 0)
             players.GetNextPerson();
-        // Defect(s) Found: 
 
-        Console.WriteLine("---------");
+            Console.WriteLine();
+            Console.WriteLine();
+
+            
+        // Defect(s) Found: Adjusted line 14 of PersonQueue.cs to use add instead of Enqueue
+
 
         // Test 2
         // Scenario: Create a queue with the following people and turns: Bob (2), Tim (5), Sue (3)
         // After running 5 times, add George with 3 turns.  Run until the queue is empty.
         // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, George, Sue, Tim, George, Tim, George
-        Console.WriteLine("Test 2");
+        Console.WriteLine("---- Test 2 ----");
         players = new TakingTurnsQueue();
         players.AddPerson("Bob", 2);
         players.AddPerson("Tim", 5);
@@ -38,15 +43,17 @@
         while (players.Length > 0)
             players.GetNextPerson();
 
-        // Defect(s) Found: 
+        Console.WriteLine();
+        Console.WriteLine();
 
-        Console.WriteLine("---------");
+        // Defect(s) Found: I found No Defects
+
 
         // Test 3
         // Scenario: Create a queue with the following people and turns: Bob (2), Tim (Forever), Sue (3)
         // Run 10 times.
         // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
-        Console.WriteLine("Test 3");
+        Console.WriteLine("---- Test 3----");
         players = new TakingTurnsQueue();
         players.AddPerson("Bob", 2);
         players.AddPerson("Tim", 0);
@@ -56,15 +63,16 @@
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: I added logic to give someone with 0 turns infenent turns per the requirements
 
-        Console.WriteLine("---------");
+        Console.WriteLine();
+        Console.WriteLine();
 
          // Test 4
         // Scenario: Create a queue with the following people and turns: Tim (Forever), Sue (3)
         // Run 10 times.
         // Expected Result: Tim, Sue, Tim, Sue, Tim, Sue, Tim, Tim, Tim, Tim
-        Console.WriteLine("Test 4");
+        Console.WriteLine("---- Test 4 ----");
         players = new TakingTurnsQueue();
         players.AddPerson("Tim", -3);
         players.AddPerson("Sue", 3);
@@ -73,16 +81,17 @@
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: I found No Defects 
 
-        Console.WriteLine("---------");
+        Console.WriteLine();
+        Console.WriteLine();
 
         // Test 5
         // Scenario: Try to get the next person from an empty queue
         // Expected Result: Error message should be displayed
-        Console.WriteLine("Test 5");
+        Console.WriteLine("---- Test 5 ----");
         players = new TakingTurnsQueue();
         players.GetNextPerson();
-        // Defect(s) Found:
+        // Defect(s) Found:I found No Defects as No one in queue was returned as expected
     }
 }

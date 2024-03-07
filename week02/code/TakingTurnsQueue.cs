@@ -34,12 +34,22 @@ public class TakingTurnsQueue {
             Console.WriteLine("No one in the queue.");
         else {
             Person person = _people.Dequeue();
+            //Console.WriteLine(person);
+            //Console.WriteLine("Queue 1: " + _people);
             if (person.Turns > 1) {
                 person.Turns -= 1;
                 _people.Enqueue(person);
+            } else if (person.Turns <= 0) {
+                _people.Enqueue(person);
             }
-
-            Console.WriteLine(person.Name);
+            
+            //make the last person not have a comma
+            if (_people.Length != 0)
+                Console.Write(person.Name + ", ");
+            else
+                Console.Write(person.Name);
+        
+            //Console.WriteLine("Queue 2: " + _people);
         }
     }
 
