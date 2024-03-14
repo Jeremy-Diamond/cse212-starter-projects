@@ -22,9 +22,30 @@
         Console.WriteLine($"Number of duplicates : {CountDuplicates(data)}");
     }
 
-    private static int CountDuplicates(int[] data)
+    public static int CountDuplicates(int[] data)
     {
         // Add code here.
-        return 0;
+        //create a HashSet to store unique values
+        var uniqueList = new HashSet<int>();
+
+        //create a counter to store the number of duplicates
+        var duplicates = 0;
+
+        //loop through the data
+        foreach (var x in data)
+        {
+            //if the value is already in the uniqueList, increment the duplicates counter
+            if (uniqueList.Contains(x))
+            {
+                duplicates++;
+            }
+            //otherwise, add the value to the uniqueList
+            else
+            {
+                uniqueList.Add(x);
+            }
+        }
+
+        return duplicates; // Placeholder return statement
     }
 }

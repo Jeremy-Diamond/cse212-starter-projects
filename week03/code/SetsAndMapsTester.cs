@@ -111,6 +111,23 @@ public static class SetsAndMapsTester {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+
+        //create a HashSet to store unique values
+        var uniqueList = new HashSet<string>();
+
+        //loop through the data
+        foreach (var word in words) {
+            //reverse the word
+            var reverse = new string(word.Reverse().ToArray());
+            //if the value is already in the uniqueList, display the pair
+            if (uniqueList.Contains(reverse)) {
+                Console.WriteLine($"{word} & {reverse}");
+            }
+            //otherwise, add the value to the uniqueList
+            else {
+                uniqueList.Add(word);
+            }
+        }
     }
 
     /// <summary>
@@ -131,7 +148,15 @@ public static class SetsAndMapsTester {
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
-            // Todo Problem 2 - ADD YOUR CODE HERE
+
+            //Console.WriteLine(fields[3]);
+            //if the value is already in the uniqueList, increment the duplicates counter
+            if (degrees.TryGetValue(fields[3], out int value)) {
+                degrees[fields[3]] = ++value;  //increment the value
+            }
+            else {
+                degrees[fields[3]] = 1; // if the value is not in the dictionary, add it
+            }    
         }
 
         return degrees;
@@ -157,8 +182,42 @@ public static class SetsAndMapsTester {
     /// # Problem 3 #
     /// #############
     private static bool IsAnagram(string word1, string word2) {
-        // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        //create a dictionary to store the frequency of each letter in the word
+        var word1Dict = new Dictionary<char, int>();
+        var word2Dict = new Dictionary<char, int>();
+
+        //convert the words to lower case
+
+        word1 = word1.ToLower();
+        word2 = word2.ToLower();
+
+        //loop through the words
+
+        foreach (var letter in word1) {
+            if (letter == ' ') continue;  // Skip spaces
+            //if the value is already in the uniqueList, increment the duplicates counter
+            if (word1Dict.TryGetValue(letter, out int value)) {
+                word1Dict[letter] = ++value;  //increment the value
+            }
+            else {
+                word1Dict[letter] = 1; // if the value is not in the dictionary, add it
+            }
+        }
+
+        foreach (var letter in word2) {
+            if (letter == ' ') continue;  // Skip spaces
+            //if the value is already in the uniqueList, increment the duplicates counter
+            if (word2Dict.TryGetValue(letter, out int value)) {
+                word2Dict[letter] = ++value;  //increment the value
+            }
+            else {
+                word2Dict[letter] = 1; // if the value is not in the dictionary, add it
+            }
+        }
+
+        //if the dictionaries are the same, return true
+        return word1Dict.Count == word2Dict.Count && !word1Dict.Except(word2Dict).Any();
+
     }
 
     /// <summary>
@@ -166,7 +225,8 @@ public static class SetsAndMapsTester {
     /// </summary>
     private static Dictionary<ValueTuple<int, int>, bool[]> SetupMazeMap() {
         Dictionary<ValueTuple<int, int>, bool[]> map = new() {
-            { (1, 1), new[] { false, true, false, true } },
+            //(x, y)       // left   Right   Up   Down 
+            { (1, 1), new[] { false, true, false, true } }, 
             { (1, 2), new[] { false, true, true, false } },
             { (1, 3), new[] { false, false, false, false } },
             { (1, 4), new[] { false, true, false, true } },
