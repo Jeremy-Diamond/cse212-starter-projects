@@ -1,5 +1,6 @@
 using System.Text.Json;
 
+
 public static class SetsAndMapsTester {
     public static void Run() {
         // Problem 1: Find Pairs with Sets
@@ -295,5 +296,11 @@ public static class SetsAndMapsTester {
         // 1. Add code in FeatureCollection.cs to describe the JSON using classes and properties 
         // on those classes so that the call to Deserialize above works properly.
         // 2. Add code below to print out each place a earthquake has happened today and its magitude.
+
+        // ...
+
+        foreach (var feature in featureCollection.Features) {
+            Console.WriteLine($"{feature.Properties.Place} - Mag {feature.Properties.Mag}");
+        }
     }
 }
